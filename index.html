@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+        var counter = 2;
+        function addInput(divName) {
+            var newdiv = document.createElement("div");
+            newdiv.innerHTML =
+                "Hobby " +
+                (counter) +
+                ": <input type='text' id=hobby"+(counter)+" onkeyup='dynamic()'>";
+            document.getElementById(divName).appendChild(newdiv);
+            counter++;
+        }
+
+        function dynamic() {
+            var x = document.getElementById('name');
+            var y = document.getElementById('qualification');
+
+            var c=1;
+            var str = "My hobbies are "+document.getElementById('hobby1').value;
+            while(c<counter){
+                c++;
+                if(c==counter){
+                   // str = str +" and "+document.getElementById('hobby'+c.toString())+".";
+                }else{
+                    str = str +", "+ document.getElementById('hobby'+c.toString()).value+".";
+                }
+            } 
+            document.getElementById('application').innerHTML = "I "+x.value+", would like apply for an internship.<br> My qualification is "+y.value+".";
+            document.getElementById('apphobby').innerHTML = str;           
+            
+        }
+    </script>
+</head>
+
+<body>
+    <form action="" method="post">
+        <div>
+            Name :
+            <input type="text" id="name" onkeyup="dynamic()" />
+        </div>
+        <div>
+            Qualification :
+            <input type="text" id="qualification" onkeyup="dynamic()" />
+        </div>
+        <div>
+            Hobbies : <br>
+            <div id="dynamicInput">
+                <div> Hobby 1 :<input type="text" id="hobby1" onkeyup="dynamic()" /> </div>
+            </div>
+            <input type="button" value="Add another text input" onClick="addInput('dynamicInput');" />
+        </div>
+    </form>
+
+    <p id="application"></p>
+    <p id="apphobby"></p>
+</body>
+
+</html>
